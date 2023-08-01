@@ -2,8 +2,7 @@ package ut.chatbot.infrastructure.flow;
 
 import chatbot.domain.Intent;
 import chatbot.domain.IntentHandler;
-import chatbot.domain.Message;
-import chatbot.infrastructure.GsonSerializer;
+import chatbot.infrastructure.DefaultSerializer;
 import chatbot.infrastructure.flow.InMemoryIntentFlow;
 import org.junit.Test;
 
@@ -22,7 +21,7 @@ public class InMemoryIntentFlowTest {
     @Test
     public void returnsWelcomeIntent() {
         InMemoryIntentFlow intentFlow =
-                new InMemoryIntentFlow(intentFlowFile(), new GsonSerializer(), mock(IntentHandler.class));
+                new InMemoryIntentFlow(intentFlowFile(), new DefaultSerializer(), mock(IntentHandler.class));
 
         Intent intent = intentFlow.welcome();
 
@@ -32,7 +31,7 @@ public class InMemoryIntentFlowTest {
     @Test
     public void returnsNextStep() {
         InMemoryIntentFlow intentFlow =
-                new InMemoryIntentFlow(intentFlowFile(), new GsonSerializer(), mock(IntentHandler.class));
+                new InMemoryIntentFlow(intentFlowFile(), new DefaultSerializer(), mock(IntentHandler.class));
         intentFlow.welcome();
 
         Intent intent = intentFlow.nextBy(aSimpleMessageWith("2")).orElseThrow();
@@ -43,7 +42,7 @@ public class InMemoryIntentFlowTest {
     @Test
     public void returnsEmptyOptionalWhenIntentNotFound() {
         InMemoryIntentFlow intentFlow =
-                new InMemoryIntentFlow(intentFlowFile(), new GsonSerializer(), mock(IntentHandler.class));
+                new InMemoryIntentFlow(intentFlowFile(), new DefaultSerializer(), mock(IntentHandler.class));
         intentFlow.welcome();
 
         assertThat(intentFlow.nextBy(aSimpleMessageWith("3")), is(Optional.empty()));

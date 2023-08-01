@@ -15,10 +15,9 @@ import java.util.Optional;
 
 public class InMemoryIntentFlow implements IntentFlow {
 
-    private static final int WELCOME_STEP_INDEX = 0;
     private final Flow flow;
     private final IntentHandler intentHandler;
-    private int currentStep;
+    private int currentStep = 0;
 
     public InMemoryIntentFlow(File flowFile, Serializer serializer, IntentHandler intentHandler) {
         this.flow = readFlow(flowFile, serializer);
@@ -35,15 +34,11 @@ public class InMemoryIntentFlow implements IntentFlow {
 
     @Override
     public Intent welcome() {
-        try {
-            return flow.intents.stream()
-                    .filter(step -> step.name.equals("welcome"))
-                    .findFirst()
-                    .map(this::intentOf)
-                    .orElseThrow();
-        } finally {
-            currentStep = WELCOME_STEP_INDEX;
-        }
+        return flow.intents.stream()
+                .filter(step -> step.name.equals("welcome"))
+                .findFirst()
+                .map(this::intentOf)
+                .orElseThrow();
     }
 
     @Override

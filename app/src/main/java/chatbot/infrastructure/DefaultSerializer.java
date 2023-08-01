@@ -2,7 +2,7 @@ package chatbot.infrastructure;
 
 import com.google.gson.Gson;
 
-public class GsonSerializer implements Serializer{
+public class DefaultSerializer implements Serializer{
 
     private final Gson gson = new Gson();
 

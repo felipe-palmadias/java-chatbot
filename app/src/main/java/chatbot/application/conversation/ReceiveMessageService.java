@@ -7,9 +7,9 @@ import chatbot.domain.Message;
 import chatbot.domain.User;
 
 public class ReceiveMessageService {
-
     private final TransactionalContext context;
     private final ChatBot chatBot;
+
 
     public ReceiveMessageService(TransactionalContext context, ChatBot chatBot) {
         this.context = context;
