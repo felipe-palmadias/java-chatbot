@@ -1,0 +1,43 @@
+{
+  "intents": [
+    {
+      "name": "welcome",
+      "response": "Welcome to chatbot. Type 1 or 2.",
+      "options": [
+        {
+          "condition": "1",
+          "next": "step-1"
+        },
+        {
+          "condition": "2",
+          "next": "step-2"
+        }
+      ]
+    },
+    {
+      "name": "step-1",
+      "response": "Step 1 chosen.",
+      "options": [
+        {
+          "condition": "*",
+          "next": "end"
+        }
+      ]
+    },
+    {
+      "name": "step-2",
+      "response": "Step 2 chosen.",
+      "options": [
+        {
+          "condition": "*",
+          "next": "end"
+        }
+      ]
+    },
+    {
+      "name": "end",
+      "response": "This is the end of the Chatbot conversation",
+      "options": []
+    }
+  ]
+}
