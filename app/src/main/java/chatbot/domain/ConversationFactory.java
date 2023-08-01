@@ -14,7 +14,6 @@ public class ConversationFactory {
 
     public Conversation createWith(User user) {
         Conversation conversation = new Conversation(user, intents, clock);
-        conversation.initialization();
         conversationRepository.insert(conversation);
         return conversation;
     }

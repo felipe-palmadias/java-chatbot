@@ -24,6 +24,9 @@ public class Conversation {
     }
 
     public void receive(Message message) {
+        if (initDate == null) {
+            initDate = clock.now();
+        }
         intents.selectBy(message).respond(user);
     }
 
